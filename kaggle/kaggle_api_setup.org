@@ -1,0 +1,64 @@
+#+title: Kaggle API setup
+#+author: Gowtham A R
+
+* About
+We have already installed kaggle related python packages using src_shell[header]{uv add kaggle}, so we should have relevant packages as we can see below.
+
+#+begin_src shell  :results replace :exports both
+uv pip list | grep kaggle
+#+end_src
+
+#+RESULTS:
+| kaggle    |  2.2.4 |
+| kagglesdk | 0.1.37 |
+
+* API Setup [3/3]
+Before we start working on projects, we need kaggle API setup. Below are the steps,
+- [X] Generate an API Token from kaggle website
+  Once I generated the API token, this is what I had to do to add the API token,
+  #+begin_src shell :exports none :results none
+mkdir -p ~/.kaggle && echo XXXXXXXXXXXXXXXXXXXXXXXXXXXX > ~/.kaggle/access_token && chmod 600 ~/.kaggle/access_token
+  #+end_src
+
+  Let's check if the token is present
+  #+begin_src shell :results output :exports none
+cat ~/.kaggle/access_token
+  #+end_src
+
+  #+RESULTS:
+  : XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+  Ok, it works fine.
+
+- [X] Check if the API works fine
+  #+begin_src shell :results output :exports both
+uv run kaggle competitions list
+  #+end_src
+
+  #+RESULTS:
+  #+begin_example
+  ref                                                                           deadline             category         reward  teamCount  userHasEntered  userRank
+  ----------------------------------------------------------------------------  -------------------  --------  -------------  ---------  --------------  --------
+  https://www.kaggle.com/competitions/passenger-screening-algorithm-challenge   2017-12-15 23:59:00  Featured  1,500,000 Usd        518           False         0
+  https://www.kaggle.com/competitions/zillow-prize-1                            2018-01-10 15:59:00  Featured  1,200,000 Usd       3770           False         0
+  https://www.kaggle.com/competitions/data-science-bowl-2017                    2017-04-12 23:59:00  Featured  1,000,000 Usd       1972           False         0
+  https://www.kaggle.com/competitions/vesuvius-challenge-ink-detection          2023-06-14 23:59:00  Featured  1,000,000 Usd       1249           False         0
+  https://www.kaggle.com/competitions/arc-prize-2026-arc-agi-3                  2026-11-02 23:59:00  Featured    850,000 Usd       2441           False         0
+  https://www.kaggle.com/competitions/arc-prize-2026-arc-agi-2                  2026-11-02 23:59:00  Featured    700,000 Usd       1566           False         0
+  https://www.kaggle.com/competitions/gemini-3                                  2025-12-12 23:59:00  Featured    500,000 Usd       4084           False         0
+  https://www.kaggle.com/competitions/openai-gpt-oss-20b-red-teaming            2025-08-26 23:59:00  Featured    500,000 Usd        601           False         0
+  https://www.kaggle.com/competitions/openai-to-z-challenge                     2025-06-29 23:59:00  Featured    500,000 Usd        225           False         0
+  https://www.kaggle.com/competitions/arc-prize-2026-paper-track                2026-11-09 23:59:00  Featured    450,000 Usd        146           False         0
+  https://www.kaggle.com/competitions/pokemon-tcg-ai-battle-challenge-strategy  2026-09-13 23:59:00  Featured    240,000 Usd        459           False         0
+  https://www.kaggle.com/competitions/llm-prompt-recovery                       2024-04-16 23:59:00  Featured    200,000 Usd       2175           False         0
+  https://www.kaggle.com/competitions/vesuvius-challenge-surface-detection      2026-02-27 23:59:00  Research    200,000 Usd       1391           False         0
+  https://www.kaggle.com/competitions/asl-fingerspelling                        2023-08-24 23:59:00  Research    200,000 Usd       1314            True         0
+  https://www.kaggle.com/competitions/second-annual-data-science-bowl           2016-03-14 23:59:00  Featured    200,000 Usd        192           False         0
+  https://www.kaggle.com/competitions/gemma-4-good-hackathon                    2026-05-18 23:59:00  Featured    200,000 Usd       1608           False         0
+  https://www.kaggle.com/competitions/kaggle-measuring-agi                      2026-04-16 23:59:00  Featured    200,000 Usd       1063           False         0
+  https://www.kaggle.com/competitions/datasciencebowl                           2015-03-16 23:59:00  Featured    175,000 Usd       1049           False         0
+  https://www.kaggle.com/competitions/data-science-bowl-2019                    2020-01-22 23:59:00  Featured    160,000 Usd       3493           False         0
+  https://www.kaggle.com/competitions/feedback-prize-2021                       2022-03-15 23:59:00  Featured    160,000 Usd       2058           False         0
+  #+end_example
+
+- [X] Success

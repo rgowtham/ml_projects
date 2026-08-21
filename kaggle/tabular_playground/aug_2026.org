@@ -1,0 +1,45 @@
+#+title: Aug 2026 - Predicting smartphone addiction
+#+author: Gowtham A R
+#+PROPERTY: header-args:python :python ~/code/ml_projects/.venv/bin/python :results output :exports both
+
+* About
+Attempting my first ever Kaggle competition. Testing out emacs setup as well as an alternative to jupyter notebook. Why? Because I love using org-mode for analysis notebooks
+
+* Setting up
+** Data download and unzipping
+#+begin_src python
+import kaggle
+print(f"Kaggle version: {kaggle.__version__}")
+
+# KAGGLE API AUTHENTICATE
+kaggle.api.authenticate()
+
+# Now download the datasets
+kaggle.api.competition_download_files(
+    competition='playground-series-s6e8', # this is from the URL  - https://www.kaggle.com/competitions/playground-series-s6e8/
+    path='./data',
+    quiet=False
+)
+#+end_src
+
+#+RESULTS:
+: Kaggle version: 2.2.4
+: Downloading playground-series-s6e8.zip to ./data
+:
+
+Data is downloaded, but however we have to unzip it.
+#+begin_src shell :results replace :exports both
+cd ./data/
+mkdir -p playground-series-s6e8
+mv playground-series-s6e8.zip playground-series-s6e8
+cd playground-series-s6e8
+unzip playground-series-s6e8.zip
+#+end_src
+
+#+RESULTS:
+| Archive:   | playground-series-s6e8.zip |
+| inflating: | sample_submission.csv      |
+| inflating: | test.csv                   |
+| inflating: | train.csv                  |
+
+** Data profiling
