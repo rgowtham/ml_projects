@@ -16,7 +16,7 @@ uv pip list | grep kaggle
 Before we start working on projects, we need kaggle API setup. Below are the steps,
 - [X] Generate an API Token from kaggle website
   Once I generated the API token, this is what I had to do to add the API token,
-  #+begin_src shell :exports none :results none
+  #+begin_src shell :exports both :results output
 mkdir -p ~/.kaggle && echo XXXXXXXXXXXXXXXXXXXXXXXXXXXX > ~/.kaggle/access_token && chmod 600 ~/.kaggle/access_token
   #+end_src
 
