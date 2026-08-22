@@ -10,7 +10,7 @@
 * Individual metrics computation
 ** Balance accuracy
 *** Usage
-#+begin_src python :python ~/code/ml_projects/.venv/bin/python :results output
+#+begin_src python :python ~/code/ml_projects/.venv/bin/python :results output :exports both
 import numpy as np
 from sklearn.metrics import balanced_accuracy_score
 
