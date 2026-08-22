@@ -1,0 +1,31 @@
+#+title: Metrics Glossary
+#+author: Gowtham A R
+
+* Model performance metrics
+| Metrics           | Implementation          | Description                  |
+|-------------------+-------------------------+------------------------------|
+| balanced accuracy | [[https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html][balanced_accuracy_score]] | Average of class-wise recall |
+|                   |                         |                              |
+
+* Individual metrics computation
+** Balance accuracy
+*** Usage
+#+begin_src python :python ~/code/ml_projects/.venv/bin/python :results output
+import numpy as np
+from sklearn.metrics import balanced_accuracy_score
+
+y_true = [0, 0, 0, 0, 1, 1, 1, 1]
+y_pred = [0, 1, 0, 0, 1, 1, 0, 0]
+
+sklearn_bac = balanced_accuracy_score(y_true, y_pred)
+
+print(sklearn_bac)
+#+end_src
+
+#+RESULTS:
+: 0.625
+*** Explanation
+1. Number of class 0 samples recalled = 3 out of 4 = 0.75
+2. Number of class 1 samples recalled = 2 out of 4 = 0.5
+
+Average of these 2 numbers = (0.75 + 0.5)/2 = 0.625
