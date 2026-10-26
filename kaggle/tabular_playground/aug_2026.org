@@ -1,6 +1,6 @@
 #+title: Aug 2026 - Predicting smartphone addiction
 #+author: Gowtham A R
-#+PROPERTY: header-args:python :python ~/code/ml_projects/.venv/bin/python :results output :exports both
+#+PROPERTY: header-args:python :python ~/code/ml_projects/.venv/bin/python :results output :exports both :session kaggle_aug_26
 
 * About
 Attempting my first ever Kaggle competition. Testing out emacs setup as well as an alternative to jupyter notebook. Why? Because I love using org-mode for analysis notebooks
@@ -17,22 +17,18 @@ kaggle.api.authenticate()
 # Now download the datasets
 kaggle.api.competition_download_files(
     competition='playground-series-s6e8', # this is from the URL  - https://www.kaggle.com/competitions/playground-series-s6e8/
-    path='./data',
+    path='./data/playground-series-s6e8',
     quiet=False
 )
 #+end_src
 
 #+RESULTS:
 : Kaggle version: 2.2.4
-: Downloading playground-series-s6e8.zip to ./data
-:
+: Downloading playground-series-s6e8.zip to ./data/playground-series-s6e8
 
 Data is downloaded, but however we have to unzip it.
 #+begin_src shell :results replace :exports both
-cd ./data/
-mkdir -p playground-series-s6e8
-mv playground-series-s6e8.zip playground-series-s6e8
-cd playground-series-s6e8
+cd ./data/playground-series-s6e8
 unzip playground-series-s6e8.zip
 #+end_src
 
@@ -41,5 +37,49 @@ unzip playground-series-s6e8.zip
 | inflating: | sample_submission.csv      |
 | inflating: | test.csv                   |
 | inflating: | train.csv                  |
+** Data loading
+#+begin_src python
+import pandas as pd
+import numpy as np
+import seaborn as sns
+from matplotlib import pyplot as plt
+from rich import print
 
+df_train = pd.read_csv('./data/playground-series-s6e8/train.csv', header='infer')
+
+print(df_train.head())
+#+end_src
+
+#+RESULTS:
+#+begin_example
+   id   age  daily_screen_time_hours  social_media_hours  gaming_hours  
+work_study_hours  ...  app_opens_per_day  weekend_screen_time  gender  
+stress_level academic_work_impact addicted_label
+0   0  24.0                      NaN                1.83          1.59          
+2.11  ...               38.0                 8.63    Male        Medium         
+No              1
+1   1  19.0                     5.97                1.08           NaN          
+3.03  ...               19.0                  NaN  Female        Medium         
+No              0
+2   2  18.0                     5.09                 NaN           NaN          
+NaN  ...               60.0                 7.47  Female           Low          
+Yes              0
+3   3  21.0                     6.42                1.26          1.42          
+3.36  ...               94.0                 8.66   Other           Low         
+NaN              1
+4   4  26.0                    11.20                1.87          2.81          
+1.95  ...                NaN                13.39  Female        Medium         
+No              1
+
+[5 rows x 14 columns]
+#+end_example
 ** Data profiling
+All feature distribution and label distribution will be profiled here.
+*** General summary
+#+begin_src python
+df_train.
+#+end_src
+
+#+RESULTS:
+
+*** Label distribution
